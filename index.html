@@ -11,6 +11,9 @@
 <meta property="og:description" content="China-based manufacturer of modest apparel, supplying retailers and wholesalers in bulk at factory-direct prices.">
 <meta property="og:image" content="logo.png">
 <link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1D1D1F;
@@ -22,8 +25,10 @@
     --border: #D2D2D7;
     --border-dark: #2C2C2E;
     --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-ar: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
   }
   html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+  html[lang="ar"] body { font-family: var(--font-ar); }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: var(--font); color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
   a { color: inherit; text-decoration: none; }
@@ -40,6 +45,7 @@
   }
   header.site .wrap { height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   header.site img.logo { height: 24px; width: auto; display: block; }
+  .nav-wrap { display: flex; align-items: center; gap: 20px; }
   nav.links { display: flex; align-items: center; gap: 34px; }
   nav.links a.nav-link { font-size: 12.5px; font-weight: 400; color: var(--ink); opacity: 0.88; transition: opacity .15s ease; }
   nav.links a.nav-link:hover { opacity: 1; }
@@ -51,6 +57,20 @@
     white-space: nowrap;
   }
   a.btn-primary:hover { opacity: 0.82; }
+
+  .lang-toggle {
+    display: flex; align-items: center; gap: 2px;
+    background: rgba(0,0,0,0.05); border-radius: 980px; padding: 3px;
+    flex-shrink: 0;
+  }
+  .lang-toggle button {
+    font-family: var(--font); border: 0; background: none; cursor: pointer;
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.02em;
+    padding: 5px 11px; border-radius: 980px; color: var(--gray);
+    transition: background .15s ease, color .15s ease;
+  }
+  .lang-toggle button.active { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  html[lang="ar"] .lang-toggle button { font-family: var(--font-ar); }
 
   .menu-toggle { display: none; background: none; border: 0; width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer; }
   .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 18px; height: 1px; background: var(--ink); position: relative; transition: transform .2s ease, opacity .2s ease; }
@@ -104,6 +124,7 @@
   a.btn-link { color: #fff; font-weight: 400; font-size: 17px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 1px; transition: border-color .15s ease; }
   a.btn-link:hover { border-color: rgba(255,255,255,0.9); opacity: 1; }
   a.btn-link .chev { margin-left: 2px; }
+  [dir="rtl"] a.btn-link .chev { margin-left: 0; margin-right: 2px; display: inline-block; transform: scaleX(-1); }
 
   /* ---------- Highlights strip ---------- */
   .highlights { background: #fff; padding: 72px 22px; border-bottom: 1px solid var(--border); }
@@ -172,25 +193,31 @@
 <header class="site">
   <div class="wrap">
     <img class="logo" src="logo.png" alt="Al Mumais">
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
-    <nav class="links" id="navLinks">
-      <a class="nav-link" href="#about">About</a>
-      <a class="nav-link" href="#products">Products</a>
-      <a class="nav-link" href="#why">Why Al Mumais</a>
-      <a class="nav-link" href="#contact">Contact</a>
-      <a class="btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@almumais.com&su=Wholesale%20Inquiry&body=Hi%20Al%20Mumais%20team%2C%0A%0AI'm%20interested%20in%20a%20wholesale%20quote%20for%20modest%20apparel.%0A%0ATarget%20quantity%3A%20%0APreferred%20styles%20%2F%20fabrics%3A%20%0AShipping%20destination%3A%20%0A%0APlease%20send%20over%20your%20catalogue%2C%20samples%20information%20and%20pricing.%0A%0AThanks%2C" target="_blank" rel="noopener">Request a Quote</a>
-    </nav>
+    <div class="nav-wrap">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" id="langEn" class="active" data-lang="en">EN</button>
+        <button type="button" id="langAr" data-lang="ar">AR</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+      <nav class="links" id="navLinks">
+        <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
+        <a class="nav-link" href="#products" data-i18n="nav.products">Products</a>
+        <a class="nav-link" href="#why" data-i18n="nav.why">Why Al Mumais</a>
+        <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
+        <a class="btn-primary" data-i18n="nav.cta" href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@almumais.com&su=Wholesale%20Inquiry&body=Hi%20Al%20Mumais%20team%2C%0A%0AI'm%20interested%20in%20a%20wholesale%20quote%20for%20modest%20apparel.%0A%0ATarget%20quantity%3A%20%0APreferred%20styles%20%2F%20fabrics%3A%20%0AShipping%20destination%3A%20%0A%0APlease%20send%20over%20your%20catalogue%2C%20samples%20information%20and%20pricing.%0A%0AThanks%2C" target="_blank" rel="noopener">Request a Quote</a>
+      </nav>
+    </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="inner">
-    <div class="eyebrow">Factory-Direct · Wholesale · China</div>
-    <h1>Modest apparel,<br>manufactured for scale.</h1>
-    <p class="lead">We manufacture modest apparel in China and supply retailers, distributors and wholesalers in bulk, at factory-direct prices.</p>
+    <div class="eyebrow" data-i18n="hero.eyebrow">Factory-Direct · Wholesale · China</div>
+    <h1 data-i18n="hero.h1">Modest apparel,<br>manufactured for scale.</h1>
+    <p class="lead" data-i18n="hero.lead">We manufacture modest apparel in China and supply retailers, distributors and wholesalers in bulk, at factory-direct prices.</p>
     <div class="ctas">
-      <a class="btn-pill" href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@almumais.com&su=Wholesale%20Inquiry&body=Hi%20Al%20Mumais%20team%2C%0A%0AI'm%20interested%20in%20a%20wholesale%20quote%20for%20modest%20apparel.%0A%0ATarget%20quantity%3A%20%0APreferred%20styles%20%2F%20fabrics%3A%20%0AShipping%20destination%3A%20%0A%0APlease%20send%20over%20your%20catalogue%2C%20samples%20information%20and%20pricing.%0A%0AThanks%2C" target="_blank" rel="noopener">Request a Quote</a>
-      <a class="btn-link" href="#products">View what we offer <span class="chev">&rsaquo;</span></a>
+      <a class="btn-pill" data-i18n="nav.cta" href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@almumais.com&su=Wholesale%20Inquiry&body=Hi%20Al%20Mumais%20team%2C%0A%0AI'm%20interested%20in%20a%20wholesale%20quote%20for%20modest%20apparel.%0A%0ATarget%20quantity%3A%20%0APreferred%20styles%20%2F%20fabrics%3A%20%0AShipping%20destination%3A%20%0A%0APlease%20send%20over%20your%20catalogue%2C%20samples%20information%20and%20pricing.%0A%0AThanks%2C" target="_blank" rel="noopener">Request a Quote</a>
+      <a class="btn-link" href="#products" data-i18n="hero.cta2">View what we offer <span class="chev">&rsaquo;</span></a>
     </div>
   </div>
 </section>
@@ -199,62 +226,62 @@
   <div class="grid">
     <div class="h-item">
       <div class="n">01</div>
-      <div class="t">A wide range of styles</div>
-      <div class="d">An extensive catalogue of styles, colours and fabrics to suit different markets.</div>
+      <div class="t" data-i18n="h1.t">A wide range of styles</div>
+      <div class="d" data-i18n="h1.d">An extensive catalogue of styles, colours and fabrics to suit different markets.</div>
     </div>
     <div class="h-item">
       <div class="n">02</div>
-      <div class="t">Factory-direct pricing</div>
-      <div class="d">No middleman markup — you buy at the price we manufacture for.</div>
+      <div class="t" data-i18n="h2.t">Factory-direct pricing</div>
+      <div class="d" data-i18n="h2.d">No middleman markup — you buy at the price we manufacture for.</div>
     </div>
     <div class="h-item">
       <div class="n">03</div>
-      <div class="t">Steady lead times</div>
-      <div class="d">Production planned around large orders, so you can plan a season ahead.</div>
+      <div class="t" data-i18n="h3.t">Steady lead times</div>
+      <div class="d" data-i18n="h3.d">Production planned around large orders, so you can plan a season ahead.</div>
     </div>
   </div>
 </section>
 
 <section class="about" id="about">
   <div class="inner">
-    <h2 class="statement">A manufacturer<br><em>built for wholesale.</em></h2>
-    <p class="sub">Al Mumais is a China-based manufacturer specialising in modest apparel for the wholesale market. We work directly with retailers, distributors and wholesalers, supplying in bulk at factory-direct prices — with consistent quality and lead times you can plan a season around.</p>
-    <div class="taglist">OEM &amp; ODM<span class="dot">&middot;</span>Custom colours &amp; fabrics<span class="dot">&middot;</span>Samples on request<span class="dot">&middot;</span>Bulk pricing</div>
+    <h2 class="statement" data-i18n="about.h2">A manufacturer<br><em>built for wholesale.</em></h2>
+    <p class="sub" data-i18n="about.sub">Al Mumais is a China-based manufacturer specialising in modest apparel for the wholesale market. We work directly with retailers, distributors and wholesalers, supplying in bulk at factory-direct prices — with consistent quality and lead times you can plan a season around.</p>
+    <div class="taglist" data-i18n="about.tags">OEM &amp; ODM<span class="dot">&middot;</span>Custom colours &amp; fabrics<span class="dot">&middot;</span>Samples on request<span class="dot">&middot;</span>Bulk pricing</div>
   </div>
 </section>
 
 <section class="products" id="products">
   <div class="section-intro">
-    <h2 class="section-head">Built for buyers who order in volume.</h2>
-    <p>Every order is priced and produced for wholesale — from first sample to full container.</p>
+    <h2 class="section-head" data-i18n="products.h2">Built for buyers who order in volume.</h2>
+    <p data-i18n="products.p">Every order is priced and produced for wholesale — from first sample to full container.</p>
   </div>
   <div class="rows">
     <div class="row">
       <div class="row-label">01</div>
       <div class="row-body">
-        <div class="t">Wide Style Range</div>
-        <div class="d">An extensive range of styles to suit different markets and customer preferences.</div>
+        <div class="t" data-i18n="products.r1.t">Wide Style Range</div>
+        <div class="d" data-i18n="products.r1.d">An extensive range of styles to suit different markets and customer preferences.</div>
       </div>
     </div>
     <div class="row">
       <div class="row-label">02</div>
       <div class="row-body">
-        <div class="t">Fabric &amp; Colour Options</div>
-        <div class="d">Multiple fabric weights and a broad colour palette, with customisation available for bulk orders.</div>
+        <div class="t" data-i18n="products.r2.t">Fabric &amp; Colour Options</div>
+        <div class="d" data-i18n="products.r2.d">Multiple fabric weights and a broad colour palette, with customisation available for bulk orders.</div>
       </div>
     </div>
     <div class="row">
       <div class="row-label">03</div>
       <div class="row-body">
-        <div class="t">Bulk &amp; Wholesale</div>
-        <div class="d">Built for high-volume orders, with steady, predictable lead times.</div>
+        <div class="t" data-i18n="products.r3.t">Bulk &amp; Wholesale</div>
+        <div class="d" data-i18n="products.r3.d">Built for high-volume orders, with steady, predictable lead times.</div>
       </div>
     </div>
     <div class="row">
       <div class="row-label">04</div>
       <div class="row-body">
-        <div class="t">Samples &amp; Pricing</div>
-        <div class="d">Samples and a price list available on request, tailored to your target quantities.</div>
+        <div class="t" data-i18n="products.r4.t">Samples &amp; Pricing</div>
+        <div class="d" data-i18n="products.r4.d">Samples and a price list available on request, tailored to your target quantities.</div>
       </div>
     </div>
   </div>
@@ -262,42 +289,42 @@
 
 <section class="why" id="why">
   <div class="section-intro">
-    <h2 class="section-head">Five reasons buyers stay.</h2>
+    <h2 class="section-head" data-i18n="why.h2">Five reasons buyers stay.</h2>
   </div>
   <div class="rows light">
     <div class="row">
       <div class="row-label">01</div>
       <div class="row-body">
-        <div class="t">Factory-direct pricing</div>
-        <div class="d">No middleman markup — you buy at the price we manufacture for.</div>
+        <div class="t" data-i18n="why.r1.t">Factory-direct pricing</div>
+        <div class="d" data-i18n="why.r1.d">No middleman markup — you buy at the price we manufacture for.</div>
       </div>
     </div>
     <div class="row">
       <div class="row-label">02</div>
       <div class="row-body">
-        <div class="t">Wide range of styles, colours &amp; fabrics</div>
-        <div class="d">A broad catalogue, with customisation available for qualifying bulk orders.</div>
+        <div class="t" data-i18n="why.r2.t">Wide range of styles, colours &amp; fabrics</div>
+        <div class="d" data-i18n="why.r2.d">A broad catalogue, with customisation available for qualifying bulk orders.</div>
       </div>
     </div>
     <div class="row">
       <div class="row-label">03</div>
       <div class="row-body">
-        <div class="t">Steady lead times for bulk orders</div>
-        <div class="d">Production planned around large orders, so you can plan a season around it.</div>
+        <div class="t" data-i18n="why.r3.t">Steady lead times for bulk orders</div>
+        <div class="d" data-i18n="why.r3.d">Production planned around large orders, so you can plan a season around it.</div>
       </div>
     </div>
     <div class="row">
       <div class="row-label">04</div>
       <div class="row-body">
-        <div class="t">Samples &amp; price lists on request</div>
-        <div class="d">Tell us your target quantities and we'll quote accordingly.</div>
+        <div class="t" data-i18n="why.r4.t">Samples &amp; price lists on request</div>
+        <div class="d" data-i18n="why.r4.d">Tell us your target quantities and we'll quote accordingly.</div>
       </div>
     </div>
     <div class="row">
       <div class="row-label">05</div>
       <div class="row-body">
-        <div class="t">OEM &amp; ODM customisation</div>
-        <div class="d">Available for wholesale partners with qualifying order volumes.</div>
+        <div class="t" data-i18n="why.r5.t">OEM &amp; ODM customisation</div>
+        <div class="d" data-i18n="why.r5.d">Available for wholesale partners with qualifying order volumes.</div>
       </div>
     </div>
   </div>
@@ -305,8 +332,8 @@
 
 <section class="contact" id="contact">
   <div class="inner">
-    <h2>Let's talk about your order.</h2>
-    <p>Tell us your target quantities and product requirements — we'll send a catalogue, sample information and a quotation.</p>
+    <h2 data-i18n="contact.h2">Let's talk about your order.</h2>
+    <p data-i18n="contact.p">Tell us your target quantities and product requirements — we'll send a catalogue, sample information and a quotation.</p>
     <div class="ctas">
       <a class="btn-pill" href="mailto:sales@almumais.com?subject=Wholesale%20Inquiry">sales@almumais.com</a>
     </div>
@@ -315,7 +342,7 @@
 
 <footer class="site">
   <div class="wrap">
-    <div class="copy">© Al Mumais — factory-direct modest apparel manufacturer, China.</div>
+    <div class="copy" data-i18n="footer.copy">© Al Mumais — factory-direct modest apparel manufacturer, China.</div>
     <a href="mailto:sales@almumais.com">sales@almumais.com</a>
   </div>
 </footer>
@@ -333,6 +360,70 @@
       toggle.setAttribute('aria-expanded', 'false');
     });
   });
+
+  var translations = {
+    'nav.about': { en: 'About', ar: 'من نحن' },
+    'nav.products': { en: 'Products', ar: 'منتجاتنا' },
+    'nav.why': { en: 'Why Al Mumais', ar: 'لماذا الموميس' },
+    'nav.contact': { en: 'Contact', ar: 'تواصل معنا' },
+    'nav.cta': { en: 'Request a Quote', ar: 'اطلب عرض سعر' },
+    'hero.eyebrow': { en: 'Factory-Direct · Wholesale · China', ar: 'مباشر من المصنع · جملة · الصين' },
+    'hero.h1': { en: 'Modest apparel,<br>manufactured for scale.', ar: 'ملابس محتشمة،<br>بالتصنيع على نطاق واسع.' },
+    'hero.lead': { en: 'We manufacture modest apparel in China and supply retailers, distributors and wholesalers in bulk, at factory-direct prices.', ar: 'نصنّع الملابس المحتشمة في الصين ونورّد تجار التجزئة والموزعين وتجار الجملة بكميات كبيرة، بأسعار المصنع مباشرة.' },
+    'hero.cta2': { en: 'View what we offer <span class="chev">&rsaquo;</span>', ar: 'تعرّف على منتجاتنا <span class="chev">&rsaquo;</span>' },
+    'h1.t': { en: 'A wide range of styles', ar: 'تشكيلة واسعة من الموديلات' },
+    'h1.d': { en: 'An extensive catalogue of styles, colours and fabrics to suit different markets.', ar: 'كتالوج واسع من الموديلات والألوان والأقمشة يلائم مختلف الأسواق.' },
+    'h2.t': { en: 'Factory-direct pricing', ar: 'أسعار مباشرة من المصنع' },
+    'h2.d': { en: 'No middleman markup — you buy at the price we manufacture for.', ar: 'بلا وسيط أو هامش إضافي — تشتري بسعر التصنيع مباشرة.' },
+    'h3.t': { en: 'Steady lead times', ar: 'مواعيد تسليم منتظمة' },
+    'h3.d': { en: 'Production planned around large orders, so you can plan a season ahead.', ar: 'يُخطَّط الإنتاج للطلبات الكبيرة، لتتمكن من التخطيط لموسمك مسبقًا.' },
+    'about.h2': { en: 'A manufacturer<br><em>built for wholesale.</em>', ar: 'مصنع<br><em>مبني لتجارة الجملة.</em>' },
+    'about.sub': { en: 'Al Mumais is a China-based manufacturer specialising in modest apparel for the wholesale market. We work directly with retailers, distributors and wholesalers, supplying in bulk at factory-direct prices — with consistent quality and lead times you can plan a season around.', ar: 'الموميس مصنع مقره الصين متخصص في الملابس المحتشمة لسوق الجملة. نعمل مباشرة مع تجار التجزئة والموزعين وتجار الجملة، ونورّد بكميات كبيرة بأسعار المصنع — بجودة ثابتة ومواعيد تسليم يمكنكم التخطيط لموسمكم حولها.' },
+    'about.tags': { en: 'OEM &amp; ODM<span class="dot">&middot;</span>Custom colours &amp; fabrics<span class="dot">&middot;</span>Samples on request<span class="dot">&middot;</span>Bulk pricing', ar: 'تصنيع OEM وODM<span class="dot">&middot;</span>ألوان وأقمشة مخصصة<span class="dot">&middot;</span>عينات عند الطلب<span class="dot">&middot;</span>أسعار جملة' },
+    'products.h2': { en: 'Built for buyers who order in volume.', ar: 'مصمم للمشترين الذين يطلبون بكميات كبيرة.' },
+    'products.p': { en: 'Every order is priced and produced for wholesale — from first sample to full container.', ar: 'يتم تسعير كل طلبية وإنتاجها بمنطق الجملة — من أول عينة حتى الحاوية الكاملة.' },
+    'products.r1.t': { en: 'Wide Style Range', ar: 'تشكيلة واسعة من الموديلات' },
+    'products.r1.d': { en: 'An extensive range of styles to suit different markets and customer preferences.', ar: 'مجموعة واسعة من الموديلات تلائم مختلف الأسواق وأذواق العملاء.' },
+    'products.r2.t': { en: 'Fabric &amp; Colour Options', ar: 'خيارات الأقمشة والألوان' },
+    'products.r2.d': { en: 'Multiple fabric weights and a broad colour palette, with customisation available for bulk orders.', ar: 'أوزان أقمشة متعددة ومجموعة ألوان واسعة، مع إمكانية التخصيص للطلبات الكبيرة.' },
+    'products.r3.t': { en: 'Bulk &amp; Wholesale', ar: 'الجملة والكميات الكبيرة' },
+    'products.r3.d': { en: 'Built for high-volume orders, with steady, predictable lead times.', ar: 'مصمم للطلبات كبيرة الحجم، بمواعيد تسليم ثابتة ويمكن التنبؤ بها.' },
+    'products.r4.t': { en: 'Samples &amp; Pricing', ar: 'العينات والأسعار' },
+    'products.r4.d': { en: 'Samples and a price list available on request, tailored to your target quantities.', ar: 'العينات وقائمة الأسعار متاحة عند الطلب، وفق الكميات المستهدفة لديكم.' },
+    'why.h2': { en: 'Five reasons buyers stay.', ar: 'خمسة أسباب تجعل عملاءنا يستمرون معنا.' },
+    'why.r1.t': { en: 'Factory-direct pricing', ar: 'أسعار مباشرة من المصنع' },
+    'why.r1.d': { en: 'No middleman markup — you buy at the price we manufacture for.', ar: 'بلا وسيط أو هامش إضافي — تشتري بسعر التصنيع مباشرة.' },
+    'why.r2.t': { en: 'Wide range of styles, colours &amp; fabrics', ar: 'تشكيلة واسعة من الموديلات والألوان والأقمشة' },
+    'why.r2.d': { en: 'A broad catalogue, with customisation available for qualifying bulk orders.', ar: 'كتالوج واسع، مع إمكانية التخصيص للطلبات الكبيرة المؤهلة.' },
+    'why.r3.t': { en: 'Steady lead times for bulk orders', ar: 'مواعيد تسليم منتظمة للطلبات الكبيرة' },
+    'why.r3.d': { en: 'Production planned around large orders, so you can plan a season around it.', ar: 'يُخطَّط الإنتاج حول الطلبات الكبيرة، لتتمكنوا من التخطيط لموسمكم حوله.' },
+    'why.r4.t': { en: 'Samples &amp; price lists on request', ar: 'عينات وقوائم أسعار عند الطلب' },
+    'why.r4.d': { en: "Tell us your target quantities and we'll quote accordingly.", ar: 'أخبرونا بالكميات المستهدفة وسنرسل لكم عرض السعر المناسب.' },
+    'why.r5.t': { en: 'OEM &amp; ODM customisation', ar: 'تخصيص OEM وODM' },
+    'why.r5.d': { en: 'Available for wholesale partners with qualifying order volumes.', ar: 'متاح لشركاء الجملة أصحاب أحجام الطلبات المؤهلة.' },
+    'contact.h2': { en: "Let's talk about your order.", ar: 'لنتحدث عن طلبيتكم.' },
+    'contact.p': { en: "Tell us your target quantities and product requirements — we'll send a catalogue, sample information and a quotation.", ar: 'أخبرونا بالكميات المستهدفة ومتطلبات المنتج — وسنرسل لكم الكتالوج ومعلومات العينات وعرض السعر.' },
+    'footer.copy': { en: '© Al Mumais — factory-direct modest apparel manufacturer, China.', ar: '© الموميس — مصنع ملابس محتشمة مباشر من المصنع، الصين.' }
+  };
+
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var entry = translations[el.getAttribute('data-i18n')];
+      if (entry) el.innerHTML = entry[lang];
+    });
+    document.getElementById('langEn').classList.toggle('active', lang === 'en');
+    document.getElementById('langAr').classList.toggle('active', lang === 'ar');
+    try { localStorage.setItem('almumais-lang', lang); } catch (e) {}
+  }
+
+  document.getElementById('langEn').addEventListener('click', function () { setLanguage('en'); });
+  document.getElementById('langAr').addEventListener('click', function () { setLanguage('ar'); });
+
+  var savedLang = 'en';
+  try { savedLang = localStorage.getItem('almumais-lang') || 'en'; } catch (e) {}
+  if (savedLang === 'ar') setLanguage('ar');
 </script>
 
 </body>
