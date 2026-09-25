@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Al Mumais — Modest Apparel Manufacturer</title>
+<meta name="description" content="Al Mumais is a China-based manufacturer of modest apparel, supplying retailers and wholesalers in bulk at factory-direct prices.">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Al Mumais — Modest Apparel Manufacturer">
+<meta property="og:description" content="China-based manufacturer of modest apparel, supplying retailers and wholesalers in bulk at factory-direct prices.">
+<meta property="og:image" content="logo.png">
+<link rel="icon" href="logo.png">
+<style>
+  :root {
+    --ink: #1D1D1F;
+    --gray: #6E6E73;
+    --gray-light: #86868B;
+    --bg-gray: #F5F5F7;
+    --bg-dark: #000000;
+    --red: #9C3B2E;
+    --border: #D2D2D7;
+    --border-dark: #2C2C2E;
+    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font); color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 3px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+  p { margin: 0; }
+
+  /* ---------- Header ---------- */
+  header.site {
+    position: sticky; top: 0; z-index: 30; width: 100%; height: 52px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(20px) saturate(1.8); -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom: 1px solid var(--border);
+  }
+  header.site .wrap { height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  header.site img.logo { height: 24px; width: auto; display: block; }
+  nav.links { display: flex; align-items: center; gap: 34px; }
+  nav.links a.nav-link { font-size: 12.5px; font-weight: 400; color: var(--ink); opacity: 0.88; transition: opacity .15s ease; }
+  nav.links a.nav-link:hover { opacity: 1; }
+  a.btn-primary {
+    background: var(--red);
+    color: #fff; font-size: 12px; font-weight: 500;
+    padding: 7px 16px; border-radius: 980px;
+    transition: opacity .15s ease;
+    white-space: nowrap;
+  }
+  a.btn-primary:hover { opacity: 0.82; }
+
+  .menu-toggle { display: none; background: none; border: 0; width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer; }
+  .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 18px; height: 1px; background: var(--ink); position: relative; transition: transform .2s ease, opacity .2s ease; }
+  .menu-toggle span::before, .menu-toggle span::after { content: ''; position: absolute; left: 0; }
+  .menu-toggle span::before { top: -6px; }
+  .menu-toggle span::after { top: 6px; }
+  .menu-toggle[aria-expanded="true"] span { background: transparent; }
+  .menu-toggle[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+
+  @media (max-width: 760px) {
+    .menu-toggle { display: flex; }
+    nav.links {
+      position: fixed; top: 52px; left: 0; right: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column; align-items: stretch; gap: 0;
+      padding: 4px 22px 18px;
+      transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    nav.links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    nav.links a.nav-link { padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15px; opacity: 1; }
+    a.btn-primary { text-align: center; margin-top: 16px; padding: 11px 16px; font-size: 14px; }
+    .hero h1 { font-size: 38px !important; }
+    .hero p.lead { font-size: 16px !important; }
+    h2.statement { font-size: 30px !important; }
+    h2.section-head { font-size: 28px !important; }
+    .row { flex-direction: column !important; gap: 8px !important; }
+    .row .row-label { flex: none !important; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; text-align: center; background: var(--bg-dark);
+    padding: 96px 22px 84px;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,255,255,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .hero .inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; position: relative; z-index: 1; }
+  .eyebrow { font-size: 13px; letter-spacing: 0.02em; color: var(--gray-light); font-weight: 400; }
+  .hero h1 { margin: 0; font-size: 56px; line-height: 1.1; font-weight: 600; letter-spacing: -0.025em; color: #fff; }
+  .hero p.lead { margin: 0; font-size: 19px; line-height: 1.5; color: rgba(255,255,255,0.62); max-width: 520px; font-weight: 400; }
+  .hero .ctas { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+  a.btn-pill { background: var(--red); color: #fff; font-weight: 400; font-size: 17px; padding: 12px 24px; border-radius: 980px; transition: opacity .15s ease; }
+  a.btn-pill:hover { opacity: 0.85; }
+  a.btn-link { color: #fff; font-weight: 400; font-size: 17px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 1px; transition: border-color .15s ease; }
+  a.btn-link:hover { border-color: rgba(255,255,255,0.9); opacity: 1; }
+  a.btn-link .chev { margin-left: 2px; }
+
+  /* ---------- Highlights strip ---------- */
+  .highlights { background: #fff; padding: 72px 22px; border-bottom: 1px solid var(--border); }
+  .highlights .grid { max-width: 1080px; margin: 0 auto; display: flex; gap: 48px; flex-wrap: wrap; }
+  .h-item { flex: 1 1 240px; min-width: 220px; }
+  .h-item .n { font-size: 13px; color: var(--gray-light); font-weight: 400; margin-bottom: 10px; }
+  .h-item .t { font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+  .h-item .d { font-size: 15px; line-height: 1.55; color: var(--gray); }
+
+  /* ---------- Statement / About ---------- */
+  section.about { background: var(--bg-gray); padding: 100px 22px; text-align: center; }
+  .about .inner { max-width: 760px; margin: 0 auto; }
+  h2.statement { font-size: 42px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1.3; margin: 0 0 28px; }
+  h2.statement em { font-style: normal; color: var(--gray-light); }
+  .about .sub { font-size: 17px; line-height: 1.7; color: var(--gray); max-width: 560px; margin: 0 auto; }
+  .taglist { margin-top: 36px; font-size: 14px; color: var(--gray-light); letter-spacing: 0.01em; }
+  .taglist span.dot { margin: 0 12px; color: var(--border); }
+
+  /* ---------- Section head (reused) ---------- */
+  .section-intro { text-align: center; max-width: 620px; margin: 0 auto 56px; }
+  h2.section-head { font-size: 34px; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 12px; line-height: 1.3; }
+  .section-intro p { font-size: 16px; line-height: 1.6; }
+
+  /* ---------- Products (row list, dark) ---------- */
+  section.products { background: var(--bg-dark); padding: 108px 22px; }
+  section.products h2.section-head { color: #fff; }
+  section.products .section-intro p { color: rgba(255,255,255,0.5); }
+  .rows { max-width: 860px; margin: 0 auto; }
+  .row { display: flex; gap: 40px; padding: 34px 0; border-top: 1px solid var(--border-dark); align-items: baseline; }
+  .rows .row:last-child { border-bottom: 1px solid var(--border-dark); }
+  .row .row-label { flex: 0 0 64px; font-size: 15px; color: rgba(255,255,255,0.32); font-weight: 400; font-variant-numeric: tabular-nums; }
+  .row .row-body { flex: 1; display: flex; gap: 28px; flex-wrap: wrap; }
+  .row .t { flex: 1 1 220px; font-size: 19px; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+  .row .d { flex: 1.4 1 300px; font-size: 15.5px; line-height: 1.65; color: rgba(255,255,255,0.55); }
+
+  /* ---------- Why (row list, light) ---------- */
+  section.why { background: #fff; padding: 108px 22px; }
+  .rows.light .row { border-top: 1px solid var(--border); }
+  .rows.light .row:last-child { border-bottom: 1px solid var(--border); }
+  .rows.light .row-label { color: var(--gray-light); }
+  .rows.light .t { color: var(--ink); }
+  .rows.light .d { color: var(--gray); }
+
+  /* ---------- Contact ---------- */
+  section.contact { position: relative; text-align: center; background: var(--bg-dark); padding: 128px 22px; }
+  section.contact::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(156,59,46,0.14), transparent 70%);
+    pointer-events: none;
+  }
+  .contact .inner { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 18px; position: relative; z-index: 1; }
+  .contact h2 { margin: 0; font-size: 40px; font-weight: 600; letter-spacing: -0.02em; color: #fff; line-height: 1.25; }
+  .contact p { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.55); }
+  .contact .ctas { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+
+  /* ---------- Footer ---------- */
+  footer.site { background: #fff; padding: 26px 22px; border-top: 1px solid var(--border); }
+  footer.site .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  footer.site .copy { font-size: 12px; color: var(--gray-light); }
+  footer.site a { font-size: 12px; color: var(--gray); font-weight: 400; }
+  footer.site a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <img class="logo" src="logo.png" alt="Al Mumais">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+    <nav class="links" id="navLinks">
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#products">Products</a>
+      <a class="nav-link" href="#why">Why Al Mumais</a>
+      <a class="nav-link" href="#contact">Contact</a>
+      <a class="btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@almumais.com&su=Wholesale%20Inquiry&body=Hi%20Al%20Mumais%20team%2C%0A%0AI'm%20interested%20in%20a%20wholesale%20quote%20for%20modest%20apparel.%0A%0ATarget%20quantity%3A%20%0APreferred%20styles%20%2F%20fabrics%3A%20%0AShipping%20destination%3A%20%0A%0APlease%20send%20over%20your%20catalogue%2C%20samples%20information%20and%20pricing.%0A%0AThanks%2C" target="_blank" rel="noopener">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="inner">
+    <div class="eyebrow">Factory-Direct · Wholesale · China</div>
+    <h1>Modest apparel,<br>manufactured for scale.</h1>
+    <p class="lead">We manufacture modest apparel in China and supply retailers, distributors and wholesalers in bulk, at factory-direct prices.</p>
+    <div class="ctas">
+      <a class="btn-pill" href="https://mail.google.com/mail/?view=cm&fs=1&to=sales@almumais.com&su=Wholesale%20Inquiry&body=Hi%20Al%20Mumais%20team%2C%0A%0AI'm%20interested%20in%20a%20wholesale%20quote%20for%20modest%20apparel.%0A%0ATarget%20quantity%3A%20%0APreferred%20styles%20%2F%20fabrics%3A%20%0AShipping%20destination%3A%20%0A%0APlease%20send%20over%20your%20catalogue%2C%20samples%20information%20and%20pricing.%0A%0AThanks%2C" target="_blank" rel="noopener">Request a Quote</a>
+      <a class="btn-link" href="#products">View what we offer <span class="chev">&rsaquo;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="highlights">
+  <div class="grid">
+    <div class="h-item">
+      <div class="n">01</div>
+      <div class="t">A wide range of styles</div>
+      <div class="d">An extensive catalogue of styles, colours and fabrics to suit different markets.</div>
+    </div>
+    <div class="h-item">
+      <div class="n">02</div>
+      <div class="t">Factory-direct pricing</div>
+      <div class="d">No middleman markup — you buy at the price we manufacture for.</div>
+    </div>
+    <div class="h-item">
+      <div class="n">03</div>
+      <div class="t">Steady lead times</div>
+      <div class="d">Production planned around large orders, so you can plan a season ahead.</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="inner">
+    <h2 class="statement">A manufacturer<br><em>built for wholesale.</em></h2>
+    <p class="sub">Al Mumais is a China-based manufacturer specialising in modest apparel for the wholesale market. We work directly with retailers, distributors and wholesalers, supplying in bulk at factory-direct prices — with consistent quality and lead times you can plan a season around.</p>
+    <div class="taglist">OEM &amp; ODM<span class="dot">&middot;</span>Custom colours &amp; fabrics<span class="dot">&middot;</span>Samples on request<span class="dot">&middot;</span>Bulk pricing</div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="section-intro">
+    <h2 class="section-head">Built for buyers who order in volume.</h2>
+    <p>Every order is priced and produced for wholesale — from first sample to full container.</p>
+  </div>
+  <div class="rows">
+    <div class="row">
+      <div class="row-label">01</div>
+      <div class="row-body">
+        <div class="t">Wide Style Range</div>
+        <div class="d">An extensive range of styles to suit different markets and customer preferences.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-label">02</div>
+      <div class="row-body">
+        <div class="t">Fabric &amp; Colour Options</div>
+        <div class="d">Multiple fabric weights and a broad colour palette, with customisation available for bulk orders.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-label">03</div>
+      <div class="row-body">
+        <div class="t">Bulk &amp; Wholesale</div>
+        <div class="d">Built for high-volume orders, with steady, predictable lead times.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-label">04</div>
+      <div class="row-body">
+        <div class="t">Samples &amp; Pricing</div>
+        <div class="d">Samples and a price list available on request, tailored to your target quantities.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="section-intro">
+    <h2 class="section-head">Five reasons buyers stay.</h2>
+  </div>
+  <div class="rows light">
+    <div class="row">
+      <div class="row-label">01</div>
+      <div class="row-body">
+        <div class="t">Factory-direct pricing</div>
+        <div class="d">No middleman markup — you buy at the price we manufacture for.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-label">02</div>
+      <div class="row-body">
+        <div class="t">Wide range of styles, colours &amp; fabrics</div>
+        <div class="d">A broad catalogue, with customisation available for qualifying bulk orders.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-label">03</div>
+      <div class="row-body">
+        <div class="t">Steady lead times for bulk orders</div>
+        <div class="d">Production planned around large orders, so you can plan a season around it.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-label">04</div>
+      <div class="row-body">
+        <div class="t">Samples &amp; price lists on request</div>
+        <div class="d">Tell us your target quantities and we'll quote accordingly.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-label">05</div>
+      <div class="row-body">
+        <div class="t">OEM &amp; ODM customisation</div>
+        <div class="d">Available for wholesale partners with qualifying order volumes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="inner">
+    <h2>Let's talk about your order.</h2>
+    <p>Tell us your target quantities and product requirements — we'll send a catalogue, sample information and a quotation.</p>
+    <div class="ctas">
+      <a class="btn-pill" href="mailto:sales@almumais.com?subject=Wholesale%20Inquiry">sales@almumais.com</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="copy">© Al Mumais — factory-direct modest apparel manufacturer, China.</div>
+    <a href="mailto:sales@almumais.com">sales@almumais.com</a>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('navLinks');
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
